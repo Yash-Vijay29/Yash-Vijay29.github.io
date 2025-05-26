@@ -136,17 +136,17 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
+page-col: "#F9FAFB"              # Very light gray background (easier on the eyes than pure white)
+text-col: "#1F2937"              # Rich dark gray for text (tailwind gray-800)
+link-col: "#2563EB"              # Tailwind blue-600 (eye-catching, modern)
+hover-col: "#1D4ED8"             # Tailwind blue-700 (darker on hover)
+navbar-col: "#FFFFFF"            # White navbar for contrast
+navbar-text-col: "#1F2937"       # Match with body text
+navbar-border-col: "#E5E7EB"     # Tailwind gray-200 (subtle divider)
+footer-col: "#F3F4F6"            # Tailwind gray-100 (soft footer tone)
+footer-text-col: "#6B7280"       # Tailwind gray-500 (balanced secondary text)
+footer-link-col: "#1F2937"       # Slightly bold for links
+footer-hover-col: "#2563EB"      # Matches primary link color
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
