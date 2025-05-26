@@ -135,18 +135,17 @@ navbar-var-length: false
 ######################################
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
-
-page-col: "#F9FAFB"              # Very light gray background (easier on the eyes than pure white)
-text-col: "#1F2937"              # Rich dark gray for text (tailwind gray-800)
-link-col: "#2563EB"              # Tailwind blue-600 (eye-catching, modern)
-hover-col: "#1D4ED8"             # Tailwind blue-700 (darker on hover)
-navbar-col: "#FFFFFF"            # White navbar for contrast
-navbar-text-col: "#1F2937"       # Match with body text
-navbar-border-col: "#E5E7EB"     # Tailwind gray-200 (subtle divider)
-footer-col: "#F3F4F6"            # Tailwind gray-100 (soft footer tone)
-footer-text-col: "#6B7280"       # Tailwind gray-500 (balanced secondary text)
-footer-link-col: "#1F2937"       # Slightly bold for links
-footer-hover-col: "#2563EB"      # Matches primary link color
+page-col:           "#F7F4FF"   /* Very light lavender */
+text-col:           "#3A2E4F"   /* Deep plum text */
+link-col:           "#A066CC"   /* Medium purple */
+hover-col:          "#7A3EB1"   /* Darker purple for hover */
+navbar-col:         "#E8E0F9"   /* Soft pastel purple */
+navbar-text-col:    "#3A2E4F"   /* Matches text for consistency */
+navbar-border-col:  "#D2C2E0"   /* Light border, subtle contrast */
+footer-col:         "#E8E0F9"   /* Match navbar for harmony */
+footer-text-col:    "#6C5D7C"   /* Muted, classy gray-purple */
+footer-link-col:    "#3A2E4F"   /* Reuse main text color */
+footer-hover-col:   "#7A3EB1"   /* Consistent with link hover */
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
