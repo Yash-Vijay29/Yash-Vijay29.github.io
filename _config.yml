@@ -21,10 +21,10 @@ author: Yash Vijay
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Favourite Books:
+    - Cpython Internals: "https://realpython.com/products/cpython-internals-book/"
+    - AWS: "https://www.amazon.in/Learning-Amazon-Web-Services-Hands/dp/9389552958"
+  #Author's : "https://deanattali.com"
 
 ################
 # --- Logo --- #
