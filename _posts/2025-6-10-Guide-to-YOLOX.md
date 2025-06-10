@@ -2,7 +2,7 @@
 layout: post
 title: Guide to Fine-tuning YOLOX (COCO-JSON)
 subtitle: My 3 days of suffering so you dont
-cover-img: /assets/img/python2.png
+cover-img: /assets/img/Python2.png
 thumbnail-img: /assets/img/CV.png
 share-img: /assets/img/python2.png
 tags: [YOLOX]
