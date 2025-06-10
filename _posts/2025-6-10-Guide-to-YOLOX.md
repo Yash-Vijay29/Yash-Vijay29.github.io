@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Guide to Fine-tuning yolox (COCO-JSON)
+title: Guide to Fine-tuning YOLOX (COCO-JSON)
 subtitle: My 3 days of suffering so you dont
-cover-img: /assets/img/python1.jpg
-thumbnail-img: /assets/img/pythonlogo.png
-share-img: /assets/img/python1.jpg
+cover-img: /assets/img/python2.png
+thumbnail-img: /assets/img/CV.png
+share-img: /assets/img/python2.png
 tags: [YOLOX]
 author: Yash Vijay
 ---
-## Setting up the enviroment
+## Setting up the environment
 I suggest you use conda because I had to run it on python 3.7.12!
 Newer python versions may work but then you would have to tweak requirements.txt
 and all. For Windows or Mac Search up how to. Personally I use linux (Fedora) and 
@@ -19,7 +19,7 @@ conda init
 conda create -n yolox python=3.7
 conda activate yolox
 ~~~
-if you did it right the enviroment name should come up like this in the terminal:
+if you did it right the environment name should come up like this in the terminal:
 ~~~
 (yolox) yash@fedora:~$ 
 ~~~
@@ -27,7 +27,7 @@ if you did it right the enviroment name should come up like this in the terminal
 
 Yolox is available in Github by Megvii-BaseDetection. [Click here](https://github.com/Megvii-BaseDetection/YOLOX)
 for the link. Go to the 'code' section and a drop down menu should appear. Download as a ZIP file.
-Extract the ZIP and open it in your IDE or editor (I use Pycharm but alot of people use VScode, 
+Extract the ZIP and open it in your IDE or editor (I use Pycharm but a lot of people use VScode,
 should work with anything really).
 
 Once you have opened the project open your terminal, make sure your directories are correct,
@@ -52,21 +52,21 @@ Install it and you can keep it anywhere, just know the location of it. Preferabl
 
 ## Install the Dependencies
 Make sure your terminal looks like 
-```
+~~~
 (yolox) yash@fedora:~/Downloads/YOLOX-main$:
-```
+~~~
 Here the documentation was a bit off, First of all run the 
-```
+~~~
 pip3 install -r requirements.txt
-```
+~~~
 and then 
-```
+~~~
 python3 setup.py develop
 pip3 install cython
-```
+~~~
 ## Dataset Preparation
 
-Make sure your dataset is in the COCO-JSON format and properly labelled, infact to make life a bit easier
+Make sure your dataset is in the COCO-JSON format and properly labelled, in fact to make life a bit easier
 I suggest you rename the test,train,validation folders according to this format:
 ```css
 COCO/
@@ -87,22 +87,54 @@ do not need to be changed.
 
 Once it seems correct, place the "COCO" named dataset into the YOLOX-main/datasets folder, filepath
 should be something like:
-```
+~~~
 /Downloads/YOLOX-main/datasets/COCO
-```
+~~~
 
 ## Setting up the exp file
-Now most of the heavy lifting is complete.
+Now most of the heavy lifting is complete. The exp file is basically just.. configurations, like how
+are you going to train on this dataset? the parameters can be tweaked and a full list of parameters is
+given in the 
+~~~
+/Downloads/YOLOX-main/yolox/exp/yolox_base.py
+~~~
+Have a look at all the parameters you see. I suggest you dont modify anything here, rather just see
+what all you want can change and just get a general idea of everything.
+Next step you are going to head to the 
+~~~
+/Downloads/YOLOX-main/exps/default
+~~~
+directory and those are the default training configuration files for different pretrained models.
+Look through them and if you feel like modifying anything you can change there only, or make another one store it
+somewhere else etc. The important thing is that the exp .py file is what tells yolox how to run what its running.
+If this is your first time fine-tuning i suggest you leave it as it is except maybe modify the number of epochs to run.
+For example if I was running 30 epochs on a default yolox-s model my yolox_s.py file would look like:
+~~~
+import os
+
+from yolox.exp import Exp as MyExp
 
 
+class Exp(MyExp):
+    def __init__(self):
+        super(Exp, self).__init__()
+        self.depth = 0.33
+        self.width = 0.50
+        self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
+        self.max_epoch = 30 #I added this parameter myself onto the default file
+~~~
+For a look at all the parameters to modify look into the /Downloads/YOLOX-main/yolox/exp/yolox_base.py file. I suggest
+you dont change anything there, just put the parameter you wish to modify in the exp file specific to that training run,
+dont change the base file.
 
-## Realizing how PRS work for Cpython
+## Training
 
-Man did I underestimate the making a "pull request" that too on cpython. Despite it being a documentation fix, I was grilled a little on why 
-"starred_expression_list" should be a good fix, me constantly changing small things like typos unrelated to the PR (they take their one fix
-at a time policy very seriously even if you have small typo changes on documentation). Each line has a maximum character limit. Basically
-it took literally 5 days of going back and forth, literally 44 comments and 26 commits to finally get it merged. But boy how glad I felt
-afterwards is something only I know.. I was one of the 3,000 people who have fixed an inconsistency between python.gram and its documentation. 
-All from catching the issues to fixing it on my own. [The Merged PR is here](https://github.com/python/cpython/pull/134034).
-
-Hopefully this is just a beginning to a killer profile work on The official Interpreter of python.
+Now everything is done,you have downloaded yolox-main, configured the settings and parameters for your training, renamed and
+properly made the dataset. Make sure your directory is proper then run the command:
+**python tools/train.py -f /path/to/your/Exp/file -d 8 -b 64 --fp16 -o -c /path/to/the/pretrained/weights [--cache]**
+~~~
+(yolox) yash@fedora:~/Downloads/YOLOX-main$:python tools/train.py -f /path/to/your/Exp/file -d 8 -b 64 --fp16 -o -c /path/to/the/pretrained/weights [--cache]
+~~~
+if you encounter memory errors ask chatgpt or perplexity for a proper max_split or any other error, there can be
+some cuda mismatch. It should start training then.
+If you have any doubts feel free to hit me up at [here](https://www.linkedin.com/in/yashvija/)
